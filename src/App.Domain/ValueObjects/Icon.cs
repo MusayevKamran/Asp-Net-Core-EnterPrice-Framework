@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using App.Domain.Core.Models;
 
 namespace App.Domain.ValueObjects
@@ -29,7 +28,10 @@ namespace App.Domain.ValueObjects
 
         protected override IEnumerable<object> GetAtomicValues()
         {
-            throw new NotImplementedException();
+            // Using a yield return statement to return each element one at a time
+            yield return Name;
+            yield return LocalizedName;
+            yield return CategoryId;
         }
     }
 }

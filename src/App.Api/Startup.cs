@@ -1,12 +1,9 @@
 using App.Api.Configurations;
-using App.Infrastructure.CrossCutting.Identity;
 using App.Infrastructure.CrossCutting.Identity.Configurations;
-using App.Infrastructure.CrossCutting.Identity.Context;
 using App.Infrastructure.CrossCutting.IoC;
-using App.Infrastructure.Persistence.Context;
+using App.Infrastructure.Persistence.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

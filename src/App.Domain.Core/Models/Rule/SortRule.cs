@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using App.Domain.Core.Attributes;
+﻿using App.Domain.Core.Attributes;
 using App.Domain.Core.Interfaces;
 
 namespace App.Domain.Core.Models.Rule

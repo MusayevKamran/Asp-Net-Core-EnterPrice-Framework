@@ -1,8 +1,9 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using App.Infrastructure.CrossCutting.Identity.Authorization.JWT;
 using App.Infrastructure.CrossCutting.Identity.Context;
+using App.Infrastructure.CrossCutting.Identity.Interfaces;
 using App.Infrastructure.CrossCutting.Identity.Models;
+using App.Infrastructure.CrossCutting.Identity.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,6 +22,9 @@ namespace App.Infrastructure.CrossCutting.Identity.Configurations
             services.AddDefaultIdentity<Login>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddTransient<IJwtFactory, JwtFactory>();
 
             // JWT Setup
             var jwtSettings = new JwtSettings();

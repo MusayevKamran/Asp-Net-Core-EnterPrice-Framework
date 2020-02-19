@@ -1,11 +1,11 @@
-﻿using System;
-using App.Application.AutoMapper;
+﻿using App.Application.AutoMapper;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
-namespace App.Api.Configurations
+namespace App.Admin.Configurations
 {
-    public static class AutoMapperSetup
+    public static class AutoMapperConfiguration
     {
         public static void AddAutoMapperSetup(this IServiceCollection services)
         {

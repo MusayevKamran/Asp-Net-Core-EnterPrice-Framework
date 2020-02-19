@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using App.Infrastructure.CrossCutting.Identity.Context;
 using App.Infrastructure.CrossCutting.Identity.Interfaces;
 using App.Infrastructure.CrossCutting.Identity.Models;
-using App.Infrastructure.CrossCutting.Identity.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 

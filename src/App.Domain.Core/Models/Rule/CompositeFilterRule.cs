@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using App.Domain.Core.Attributes;
 using App.Domain.Core.Enums;
 using App.Domain.Core.Interfaces;

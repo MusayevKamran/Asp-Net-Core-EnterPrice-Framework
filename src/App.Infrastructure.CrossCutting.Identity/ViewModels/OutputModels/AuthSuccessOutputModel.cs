@@ -1,5 +1,3 @@
-using System;
-
 namespace App.Infrastructure.CrossCutting.Identity.ViewModels.OutputModels
 {
     public class AuthSuccessOutputModel

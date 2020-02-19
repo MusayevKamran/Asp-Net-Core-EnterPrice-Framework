@@ -12,39 +12,12 @@ namespace App.Infrastructure.Persistence.Repository
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        private readonly IHttpContextAccessor _accessor;
         private readonly IRepository _repository;
 
         public UserRepository(AppDbContext context, IRepository repository)
             : base(context, repository)
         {
             _repository = repository;
-        }
-
-        public UserRepository(IHttpContextAccessor accessor, AppDbContext context, IRepository repository)
-            : base(context, repository)
-        {
-            _accessor = accessor;
-            _repository = repository;
-        }
-
-
-        public string Name => GetName();
-
-        private string GetName()
-        {
-            return _accessor.HttpContext.User.Identity.Name ??
-                   _accessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-        }
-
-        public bool IsAuthenticated()
-        {
-            return _accessor.HttpContext.User.Identity.IsAuthenticated;
-        }
-
-        public IEnumerable<Claim> GetClaimsIdentity()
-        {
-            return _accessor.HttpContext.User.Claims;
         }
 
         public IQueryable<User> ListEntitiesByEmail(string email) =>

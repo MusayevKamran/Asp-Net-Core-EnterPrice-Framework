@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Infrastructure.CrossCutting.Identity.Services
 {
-    public class LoginManager : ILoginManager
+    public class LoginService : ILoginService
     {
 
         private readonly UserManager<Login> _loginManager;
@@ -18,16 +18,16 @@ namespace App.Infrastructure.CrossCutting.Identity.Services
 
         private readonly ApplicationDbContext _context;
 
-        private readonly RoleManager<IdentityRole> _roleManager;
+        //private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IJwtFactory _jwtFactory;
 
-        public LoginManager(UserManager<Login> loginManager, ApplicationDbContext context,
+        public LoginService(UserManager<Login> loginManager, ApplicationDbContext context,
             RoleManager<IdentityRole> roleManager, IJwtFactory jwtFactory)
         {
             _jwtFactory = jwtFactory;
             _loginManager = loginManager;
             _context = context;
-            _roleManager = roleManager;
+            //_roleManager = roleManager;
         }
 
         public async Task<AuthenticationResult> RegisterAsync(string email, string password)

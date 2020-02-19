@@ -1,7 +1,8 @@
+@using App.Infrastructure.CrossCutting.Identity.Models
 @using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<Login> SignInManager
+@inject UserManager<Login> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {

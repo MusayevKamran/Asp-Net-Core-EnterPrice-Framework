@@ -1,15 +1,12 @@
 ﻿using System;
-using App.Infrastructure.CrossCutting.Identity;
-using App.Infrastructure.CrossCutting.Identity.Authorization;
 using App.Infrastructure.CrossCutting.Identity.Context;
 using App.Infrastructure.CrossCutting.Identity.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace App.Admin.Configurations
 {
-    public static class IdentitySetup
+    public static class IdentityConfiguration
     {
         public static void AddIdentitySetup(this IServiceCollection services)
         {

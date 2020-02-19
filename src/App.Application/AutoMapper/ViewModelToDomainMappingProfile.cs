@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using App.Application.ViewModels;
+﻿using App.Application.ViewModels;
 using App.Domain.Models;
 using AutoMapper;
 

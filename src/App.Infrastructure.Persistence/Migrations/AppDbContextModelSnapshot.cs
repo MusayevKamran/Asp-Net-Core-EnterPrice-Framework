@@ -19,23 +19,6 @@ namespace App.Infrastructure.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("App.Domain.Models.TestModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TestModels");
-                });
-
             modelBuilder.Entity("App.Domain.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -72,8 +55,8 @@ namespace App.Infrastructure.Persistence.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LoginId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("LoginId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("NativeCountryId")
                         .HasColumnType("int");

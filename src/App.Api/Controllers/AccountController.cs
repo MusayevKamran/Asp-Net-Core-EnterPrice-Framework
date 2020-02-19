@@ -12,10 +12,10 @@ namespace App.Api.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly ILoginManager _loginManager;
+        private readonly ILoginService _loginManager;
         private readonly IUserService _userService;
 
-        public AccountController(ILoginManager loginManager, IUserService userService)
+        public AccountController(ILoginService loginManager, IUserService userService)
         {
             _loginManager = loginManager;
             _userService = userService;
@@ -35,7 +35,7 @@ namespace App.Api.Controllers
             var userViewModel = new UserViewModel()
             {
                 Email = registerUserInputModel.Email,
-                LoginId = authResponse.LoginId
+                LoginId = authResponse.LoginId.ToLower()
             };
             await _userService.InsertAsync(userViewModel);
 

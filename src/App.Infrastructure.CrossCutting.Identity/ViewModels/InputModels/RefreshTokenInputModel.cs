@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace App.Infrastructure.CrossCutting.Identity.ViewModels.InputModels
 {
     public class RefreshTokenInputModel

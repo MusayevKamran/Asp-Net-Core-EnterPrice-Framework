@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using App.Domain.Core.Models;
 using App.Domain.ValueObjects;
 

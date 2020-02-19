@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Domain.Core.Models;
 
 namespace App.Domain.ValueObjects

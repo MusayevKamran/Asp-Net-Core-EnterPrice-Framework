@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace App.Application.ViewModels.ValueObjectViewModel
+﻿namespace App.Application.ViewModels.ValueObjectViewModel
 {
     public class IconViewModel
     {

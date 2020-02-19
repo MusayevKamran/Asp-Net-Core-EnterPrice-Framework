@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using App.Application.ViewModels.ValueObjectViewModel;
 
 namespace App.Application.ViewModels

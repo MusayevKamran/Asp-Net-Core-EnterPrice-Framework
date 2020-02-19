@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Models;
 
 namespace App.Api.Configurations
 {
-    public static class SwaggerSetup
+    public static class SwaggerConfiguration
     {
         public static void AddSwaggerSetup(this IServiceCollection services)
         {

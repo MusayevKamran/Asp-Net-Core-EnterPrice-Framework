@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace App.Domain.Core.Enums
+﻿namespace App.Domain.Core.Enums
 {
 
     /// <summary>
