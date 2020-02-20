@@ -8,6 +8,7 @@ using App.Application.ViewModels;
 using App.Domain.Core.Models;
 using App.Domain.Interfaces;
 using App.Domain.Models;
+using App.Infrastructure.CrossCutting.Identity.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Http;
@@ -16,8 +17,8 @@ namespace App.Application.Services
 {
     public class UserService : IUserService
     {
-        private readonly IHttpContextAccessor _accessor;
         private readonly IUserRepository _userRepository;
+        private readonly IHttpContextAccessor _accessor;
         private readonly IMapper _mapper;
         public UserService(IUserRepository userRepository, IMapper mapper, IHttpContextAccessor accessor)
         {
@@ -26,30 +27,6 @@ namespace App.Application.Services
             _accessor = accessor;
         }
 
-        public string Name => GetName();
-
-        public string CurrentLoginId => GetCurrentIdentity();
-
-        private string GetName()
-        {
-            return _accessor.HttpContext.User.Identity.Name ??
-                   _accessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-        }
-
-        private string GetCurrentIdentity()
-        {
-            return _accessor.HttpContext.User.Claims.FirstOrDefault()?.Value;
-        }
-
-        public bool IsAuthenticated()
-        {
-            return _accessor.HttpContext.User.Identity.IsAuthenticated;
-        }
-
-        public IEnumerable<Claim> GetClaimsIdentity()
-        {
-            return _accessor.HttpContext.User.Claims;
-        }
 
         public async Task<UserViewModel> GetByIdAsync(int id)
         {
@@ -58,13 +35,11 @@ namespace App.Application.Services
         }
 
         public async Task<UserViewModel> GetCurrentUserAsync()
-        { 
-            
-            if (CurrentLoginId == null)
-            {
-                throw new Exception("User is not authorized");
-            }
-            var userFilter = new EntityFilter<User>(filter => filter.LoginId == CurrentLoginId);
+        {
+            var contextIdentity = new ContextIdentity(_accessor);
+            var loginId = contextIdentity.CurrentLoginId;
+
+            var userFilter = new EntityFilter<User>(filter => filter.LoginId == loginId);
             var userSort = new EntitySort<User>();
             var entity = await _userRepository.ListEntitiesAsync(userFilter, userSort);
 

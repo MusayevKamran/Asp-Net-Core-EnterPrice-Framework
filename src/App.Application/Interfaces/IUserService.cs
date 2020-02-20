@@ -8,11 +8,6 @@ namespace App.Application.Interfaces
 {
     public interface IUserService
     {
-        string Name { get; }
-        string CurrentLoginId { get; }
-        bool IsAuthenticated();
-        IEnumerable<Claim> GetClaimsIdentity();
-
         Task<IQueryable<UserViewModel>> GetListAsync();
         Task<UserViewModel> GetByIdAsync(int id);
         Task<UserViewModel> GetCurrentUserAsync();
