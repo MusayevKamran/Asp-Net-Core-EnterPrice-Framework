@@ -15,6 +15,8 @@ namespace App.Infrastructure.Persistence.Configurations
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<AppDbContext>();
+
         }
     }
 }

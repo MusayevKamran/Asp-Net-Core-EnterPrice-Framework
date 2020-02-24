@@ -35,6 +35,7 @@ namespace App.Admin
         {
             // Setting DBContexts
             services.AddAppDatabaseSetup(Configuration);
+
             services.AddApplicationDatabaseSetup(Configuration);
 
             // ASP.NET Identity Settings

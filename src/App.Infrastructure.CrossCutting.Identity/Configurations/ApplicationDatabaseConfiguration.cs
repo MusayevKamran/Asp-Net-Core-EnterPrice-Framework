@@ -15,6 +15,8 @@ namespace App.Infrastructure.CrossCutting.Identity.Configurations
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<ApplicationDbContext>();
+
         }
     }
 }

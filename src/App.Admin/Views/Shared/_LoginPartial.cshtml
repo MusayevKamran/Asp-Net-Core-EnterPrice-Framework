@@ -24,13 +24,19 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="pull-left">
-                        <button  type="submit" class="nav-link btn btn-link text-dark">Edit</button>
+                        <a  type="submit" 
+                            class="nav-link btn btn-link text-dark"
+                            asp-controller="MyDetails"
+                            asp-action="Index"
+                            >Edit</a>
+
                     </div>
                     <div class="pull-right">
                         <form class="form-inline" 
                               asp-area="Identity" 
                               asp-page="/Account/Logout" 
-                              asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
+                              asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
+                              method="post" >
                             <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
                         </form>
                     </div>

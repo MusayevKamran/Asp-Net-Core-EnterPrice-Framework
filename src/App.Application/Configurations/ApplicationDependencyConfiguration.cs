@@ -2,9 +2,9 @@
 using App.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace App.Infrastructure.CrossCutting.IoC
+namespace App.Application.Configurations
 {
-    public class InjectApplicationServices
+    public class ApplicationDependencyConfiguration
     {
         public static void RegisterServices(IServiceCollection services)
         {

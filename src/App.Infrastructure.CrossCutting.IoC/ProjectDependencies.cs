@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using App.Application.Configurations;
+using App.Infrastructure.Persistence.Configurations;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace App.Infrastructure.CrossCutting.IoC
 {
@@ -8,8 +10,10 @@ namespace App.Infrastructure.CrossCutting.IoC
         {
             // Adding dependencies from another layers (isolated from Presentation)
             InjectNativeServices.RegisterServices(services);
-            InjectInfrastructureServices.RegisterServices(services);
-            InjectApplicationServices.RegisterServices(services);
+
+            ApplicationDependencyConfiguration.RegisterServices(services);
+
+            PersistenceDependencyConfiguration.RegisterServices(services);
         }
     }
 }
