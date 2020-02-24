@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace App.Common.Models
+namespace App.Common.Exceptions.Models
 {
     [Serializable]
     public class ValidationPair

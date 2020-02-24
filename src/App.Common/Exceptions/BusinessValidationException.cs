@@ -1,4 +1,4 @@
-﻿using App.Common.Models;
+﻿using App.Common.Exceptions.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,10 +63,9 @@ namespace App.Common.Exceptions
         {
             ValidationResults = new ValidationResults();
 
+            var sb = new StringBuilder(modelState.Count * 20);
             foreach (var e in modelState)
             {
-                StringBuilder sb = new StringBuilder(modelState.Count * 20);
-
                 if (e.Value != null)
                 {
                     foreach (var value in e.Value)
@@ -102,10 +101,7 @@ namespace App.Common.Exceptions
         {
             get
             {
-                if (ValidationResults == null)
-                    return null;
-
-                return ValidationResults.Select(res => new ValidationPair { Key = res.Key, Message = res.Message, IsVisible = Convert.ToBoolean(res.Tag) }).ToArray();
+                return ValidationResults?.Select(res => new ValidationPair { Key = res.Key, Message = res.Message, IsVisible = Convert.ToBoolean(res.Tag) }).ToArray();
             }
 
             set
@@ -151,9 +147,9 @@ namespace App.Common.Exceptions
         /// </summary>
         public string ValidationsToString()
         {
+            var sb = new StringBuilder(ValidationPairs.Length * 20);
             if (ValidationResults != null)
             {
-                StringBuilder sb = new StringBuilder(ValidationPairs.Length * 20);
                 foreach (var valRes in ValidationResults)
                     sb.AppendLine((valRes.Key ?? "") + ": " + (valRes.Message ?? ""));
 

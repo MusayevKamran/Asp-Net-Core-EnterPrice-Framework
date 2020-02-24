@@ -1,4 +1,4 @@
-﻿namespace App.Common.Enums
+﻿namespace App.Common.Exceptions.Enums
 {
     public enum TagFilter
     {

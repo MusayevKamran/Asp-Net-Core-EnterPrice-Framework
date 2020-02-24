@@ -55,7 +55,7 @@ namespace App.Common.Exceptions
         /// </summary>
         public override string ToString()
         {
-            return string.Format("{0}; Data: {1}, Reason: {2}", base.ToString(), AssociatedData, Reason);
+            return $"{base.ToString()}; Data: {AssociatedData}, Reason: {Reason}";
         }
     }
 }

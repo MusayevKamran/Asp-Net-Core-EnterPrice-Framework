@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Logging\" />
+    <Folder Include="Caching\" />
   </ItemGroup>
 
 </Project>

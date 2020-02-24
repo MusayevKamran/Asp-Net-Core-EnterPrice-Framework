@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace App.Common.Models
+namespace App.Common.Exceptions.Models
 {
     /// <summary>Represents logic used to validate an object.</summary>
-    /// <seealso cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Validator`1" />
     public abstract class Validator
     {
-        private string messageTemplate;
-        private string tag;
+        private string _messageTemplate;
+        private string _tag;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Validator" /> class.
-        /// </summary>
         /// <param name="messageTemplate">The template to use when logging validation results, or <see langword="null" /> we the
         /// default message template is to be used.</param>
         /// <param name="tag">The tag to set when logging validation results, or <see langword="null" />.</param>
         protected Validator(string messageTemplate, string tag)
         {
-            this.messageTemplate = messageTemplate;
-            this.tag = tag;
+            _messageTemplate = messageTemplate;
+            _tag = tag;
         }
 
         /// <summary>
@@ -28,11 +24,10 @@ namespace App.Common.Models
         /// returning the validation results.
         /// </summary>
         /// <param name="target">The object to validate.</param>
-        /// <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResults" /> representing the outcome of the validation.</returns>
-        public ValidationResults Validate(object target)
+         public ValidationResults Validate(object target)
         {
-            ValidationResults validationResults = new ValidationResults();
-            this.DoValidate(target, target, (string)null, validationResults);
+            var validationResults = new ValidationResults();
+            DoValidate(target, target, null, validationResults);
             return validationResults;
         }
 
@@ -46,7 +41,7 @@ namespace App.Common.Models
         {
             if (validationResults == null)
                 throw new ArgumentNullException(nameof(validationResults));
-            this.DoValidate(target, target, (string)null, validationResults);
+            DoValidate(target, target, null, validationResults);
         }
 
         /// <summary>Implements the validation logic for the receiver.</summary>
@@ -78,7 +73,7 @@ namespace App.Common.Models
         {
             if (validationResults == null)
                 throw new ArgumentNullException(nameof(validationResults));
-            validationResults.AddResult(new ValidationResult(message, target, key, this.Tag, this));
+            validationResults.AddResult(new ValidationResult(message, target, key, Tag, this));
         }
 
         /// <summary>
@@ -98,7 +93,7 @@ namespace App.Common.Models
         {
             if (validationResults == null)
                 throw new ArgumentNullException(nameof(validationResults));
-            validationResults.AddResult(new ValidationResult(message, target, key, this.Tag, this, nestedValidationResults));
+            validationResults.AddResult(new ValidationResult(message, target, key, Tag, this, nestedValidationResults));
         }
 
         /// <summary>Gets the message representing a failed validation.</summary>
@@ -110,7 +105,7 @@ namespace App.Common.Models
         /// </remarks>
         protected internal virtual string GetMessage(object objectToValidate, string key)
         {
-            return string.Format((IFormatProvider)CultureInfo.CurrentCulture, this.MessageTemplate, objectToValidate, (object)key, (object)this.Tag);
+            return string.Format(CultureInfo.CurrentCulture, MessageTemplate, objectToValidate, key, Tag);
         }
 
         /// <summary>
@@ -121,33 +116,17 @@ namespace App.Common.Models
         /// <summary>
         /// Gets or sets the message template to use when logging results.
         /// </summary>
-        /// <remarks>
-        /// The <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Validator.DefaultMessageTemplate" /> will be returned if no message was specified.
-        /// </remarks>
         public string MessageTemplate
         {
-            get
-            {
-                return this.messageTemplate == null ? this.DefaultMessageTemplate : this.messageTemplate;
-            }
-            set
-            {
-                this.messageTemplate = value;
-            }
+            get => _messageTemplate ?? DefaultMessageTemplate;
+            set => _messageTemplate = value;
         }
 
         /// <summary>Gets a value characterizing the logged result.</summary>
-        /// <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResult.Tag" />
         public string Tag
         {
-            get
-            {
-                return this.tag;
-            }
-            set
-            {
-                this.tag = value;
-            }
+            get => _tag;
+            set => _tag = value;
         }
     }
 }
