@@ -8,9 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : ApiController
     {
         private readonly ILoginService _loginManager;
         private readonly IUserService _userService;

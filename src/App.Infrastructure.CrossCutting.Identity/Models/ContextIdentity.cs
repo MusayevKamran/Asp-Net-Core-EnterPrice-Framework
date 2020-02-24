@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using App.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 
 namespace App.Infrastructure.CrossCutting.Identity.Models
@@ -20,7 +21,7 @@ namespace App.Infrastructure.CrossCutting.Identity.Models
         {
             if (_accessor?.HttpContext?.User?.Claims?.FirstOrDefault()?.Value == null)
             {
-                throw new Exception("User is not authorized");
+                throw new BusinessValidationException("User is not authorized","security");
             }
 
             return _accessor.HttpContext.User.Claims.FirstOrDefault()?.Value;
