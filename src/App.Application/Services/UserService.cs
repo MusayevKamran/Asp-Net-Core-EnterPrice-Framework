@@ -30,7 +30,7 @@ namespace App.Application.Services
 
         public async Task<UserViewModel> GetByIdAsync(int id)
         {
-            var entity = await _userRepository.GetEntityByIdAsync(id);
+            var entity = await _userRepository.GetByIdAsync(id);
             return _mapper.Map<UserViewModel>(entity);
         }
 
@@ -41,7 +41,7 @@ namespace App.Application.Services
 
             var userFilter = new EntityFilter<User>(filter => filter.LoginId == loginId);
             var userSort = new EntitySort<User>();
-            var entity = await _userRepository.ListEntitiesAsync(userFilter, userSort);
+            var entity = await _userRepository.GetAllAsync(userFilter, userSort);
 
             return _mapper.Map<UserViewModel>(entity.FirstOrDefault());
         }
@@ -51,7 +51,7 @@ namespace App.Application.Services
             var testModelFilter = new EntityFilter<User>();
             var testModelSort = new EntitySort<User>();
 
-            var entityList = await _userRepository.ListEntitiesAsync(testModelFilter, testModelSort);
+            var entityList = await _userRepository.GetAllAsync(testModelFilter, testModelSort);
 
             return entityList.AsQueryable().ProjectTo<UserViewModel>(_mapper.ConfigurationProvider);
         }
@@ -59,7 +59,7 @@ namespace App.Application.Services
         public async Task<UserViewModel> InsertAsync(UserViewModel entityViewModel)
         {
             var entityMap = _mapper.Map<User>(entityViewModel);
-            var entity = (User)await _userRepository.InsertEntityAsync(entityMap);
+            var entity = (User)await _userRepository.InsertAndGetAsync(entityMap);
             return _mapper.Map<UserViewModel>(entity);
         }
 
@@ -67,7 +67,7 @@ namespace App.Application.Services
         {
             var entity = _mapper.Map<User>(entityViewModel);
 
-            await _userRepository.UpdateEntityAsync(entity);
+            await _userRepository.UpdateAsync(entity);
         }
     }
 }

@@ -21,25 +21,30 @@ namespace App.Domain.Interfaces.Core
     {
         TEntity NewEntity();
 
-        IQueryable<TEntity> ListEntities(
+        IQueryable<TEntity> GetAll(
             EntityFilter<TEntity> filter = null, EntitySort<TEntity> sort = null,
             int forceLimit = -1, int skip = -1);
 
-        Task<IEnumerable<TEntity>> ListEntitiesAsync(
+        Task<IEnumerable<TEntity>> GetAllAsync(
             EntityFilter<TEntity> filter = null, EntitySort<TEntity> sort = null,
             int forceLimit = -1, int skip = -1);
 
-        IQueryable<TEntity> ListEntities(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
 
-        Task<IEnumerable<TEntity>> ListEntitiesAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate);
 
-        TEntity GetEntityById(int id);
-        Task<TEntity> GetEntityByIdAsync(int id);
-        void UpdateEntity(TEntity entity);
-        Task UpdateEntityAsync(TEntity entity);
-        object InsertEntity(TEntity entity);
-        Task<object> InsertEntityAsync(TEntity entity);
-        void DeleteEntity(TEntity entity);
-        bool IsEntityExists(object id, Expression<Func<TEntity, bool>> predicate);
+        TEntity GetById(int id);
+        Task<TEntity> GetByIdAsync(int id);
+        void Update(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        void Insert(TEntity entity);
+        Task InsertAsync(TEntity entity);
+        int InsertAndGetId(TEntity entity);
+        Task<int> InsertAndGetIdAsync(TEntity entity);
+        TEntity InsertAndGet(TEntity entity);
+        Task<TEntity> InsertAndGetAsync(TEntity entity);
+        void Delete(TEntity entity);
+        void Delete(int id);
+        bool IsExists(object id, Expression<Func<TEntity, bool>> predicate);
     }
 }
