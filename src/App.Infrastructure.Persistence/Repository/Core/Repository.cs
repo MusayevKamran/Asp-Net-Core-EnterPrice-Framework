@@ -106,14 +106,16 @@ namespace App.Infrastructure.Persistence.Repository.Core
 
         public void Insert(TEntity entity)
         {
-            var repo = _context.Set<TEntity>();
-            entity = repo.Add(entity).Entity;
+            //var repo = _context.Set<TEntity>();
+            //entity = repo.Add(entity).Entity; 
+            _context.Set<TEntity>().Add(entity);
             _context.SaveChanges();
         }
         public async Task InsertAsync(TEntity entity)
         {
-            var repo = _context.Set<TEntity>();
-            entity = await Task.FromResult(repo.Add(entity).Entity);
+            //var repo = _context.Set<TEntity>();
+            //entity = await Task.FromResult(repo.Add(entity).Entity);
+            _context.Set<TEntity>().Add(entity);
             await _context.SaveChangesAsync();
         }
 
